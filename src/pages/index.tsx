@@ -1,6 +1,7 @@
 import Navbar from '@/components/Navbar'
-import { Box, Heading } from '@chakra-ui/react'
+import { Box, Flex, Heading } from '@chakra-ui/react'
 import Head from 'next/head'
+import Image from 'next/image'
 
 
 export default function Home() {
@@ -12,8 +13,14 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Box  w="100vw" minH="100vh" bgSize="cover" bgPos="center" bgRepeat="no-repeat"              backgroundImage="url('/homeBackground.png')">
+      <Box w="100vw" minH="100vh" bgSize="cover" bgPos="center" bgRepeat="no-repeat"              backgroundImage="url('/homeBackground.png')">
       <Navbar/>
+      <Flex paddingX="10vw" marginTop="36px" justifyContent="space-between">
+        <Flex flexDir="column">
+          <Heading fontWeight={400} fontSize="48px" lineHeight="62px" mb="24px" as='h1' color='#fff'>Generate <Heading textTransform="uppercase" as='span' color="#FFC453">Custom Avatar</Heading> </Heading>
+          <Image src="/headingDivider.svg" width={373} height={1.37} alt="divider"/>
+        </Flex>
+      </Flex>
       </Box>
 
     </>
