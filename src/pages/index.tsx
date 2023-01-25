@@ -1,5 +1,5 @@
 import Navbar from '@/components/Navbar'
-import { Heading } from '@chakra-ui/react'
+import { Box, Heading } from '@chakra-ui/react'
 import Head from 'next/head'
 
 
@@ -12,7 +12,10 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Box  w="100vw" minH="100vh" bgSize="cover" bgPos="center" bgRepeat="no-repeat"              backgroundImage="url('/homeBackground.png')">
       <Navbar/>
+      </Box>
+
     </>
   )
 }
