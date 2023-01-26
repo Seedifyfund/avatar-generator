@@ -1,6 +1,8 @@
+import Avatar from '@/components/Avatar'
+import AvatarCategory from '@/components/AvatarCategory'
 import Navbar from '@/components/Navbar'
-import { Avatar } from '@/styles'
-import { Box, Flex, Heading } from '@chakra-ui/react'
+
+import { Box, Flex, Heading, Stack, VStack } from '@chakra-ui/react'
 import Head from 'next/head'
 import Image from 'next/image'
 
@@ -14,17 +16,62 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Box w="100vw" h="100vh" bgSize="cover" bgPos="center" bgRepeat="no-repeat"              backgroundImage="url('/homeBackground.png')">
-      <Navbar/>
-      <Flex paddingX="10vw" marginTop="36px" justifyContent="space-between">
-        <Flex flexDir="column">
-          <Heading fontWeight={400} fontSize="48px" lineHeight="62px" mb="24px" as='h1' color='#fff'>Generate <Heading textTransform="uppercase" as='span' color="#FFC453">Custom Avatar</Heading> </Heading>
-          <Image src="/headingDivider.svg" width={373} height={1.37} alt="divider"/>
+      <Box
+        w="100vw"
+        h="100vh"
+        bgSize="cover"
+        bgPos="center"
+        bgRepeat="no-repeat"
+        backgroundImage="url('/homeBackground.png')"
+      >
+        <Navbar />
+        <Flex
+          paddingX="10vw"
+          paddingTop="24px"
+          justifyContent="space-between"
+          h="70%"
+        >
+          <Flex flexDir="column">
+            <Heading
+              fontWeight={400}
+              fontSize="48px"
+              lineHeight="62px"
+              mb="12px"
+              as='h1'
+              color='#fff'
+            >
+              Generate <Heading
+                textTransform="uppercase"
+                as='span'
+                color="#FFC453"
+              >
+               Custom Avatar
+              </Heading>
+            </Heading>
+            <Image
+              src="/headingDivider.svg"
+              width={373}
+              height={1.37}
+              alt="divider"
+            />
+            <Stack spacing={4} mt="48px">
+            <AvatarCategory title="Gender" options={['hello', 'bye', 'hey']}/>
+            <AvatarCategory title="Skin Type"  options={['hello', 'bye', 'hey']} />
+            <AvatarCategory title="Archetype"  options={['hello', 'bye', 'hey']}/>
+            <AvatarCategory title="Job"  options={['hello', 'bye', 'hey']}/>
+            <AvatarCategory title="Upgrades" options={['hello', 'bye', 'hey']}/>
+            </Stack>
+
+
+          </Flex>
+          <Flex
+            w="50%"
+            h="100%"
+            alignItems="flex-end"
+          >
+            <Avatar />
+          </Flex>
         </Flex>
-        <Box w="57.2%">
-          <Avatar src="/avatar.png" alt="avatar" fill />
-        </Box>
-      </Flex>
       </Box>
 
     </>
