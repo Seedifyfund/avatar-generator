@@ -1,14 +1,13 @@
-import api from '@/utils/api';
 import { Box, Accordion, AccordionItem, AccordionButton, AccordionIcon, AccordionPanel, Heading, Flex, Select } from '@chakra-ui/react';
 import Image from 'next/image';
 import { useQuery } from 'react-query';
+import { getSampleURLByGender } from '@/utils/hooks/useAvatars';
 
+const GenderCategory = ({ }) => {
+    const { data } = useQuery(
+        `queryKeyMale`, async() => await getSampleURLByGender('Male')
+    )
 
-interface AvatarCategoryProps {
-    title: string;
-    options: Array<string>;
-}
-const AvatarCategory = ({ title, options }: AvatarCategoryProps) => {
     return (
         <Flex justify="space-between" alignItems="center">
             <Flex justify="space-between" alignItems="center" mb="12px">
@@ -18,14 +17,16 @@ const AvatarCategory = ({ title, options }: AvatarCategoryProps) => {
                     lineHeight="62px"
                     ml={4}
                     as='h1'>
-                    {title}
+                    Gender
                 </Heading>
             </Flex>
             <Select w="60%" placeholder='Select option' borderColor="#FFC453" color="#FFF">
-                {options && options.map((option: string) => (<option style={{ color: 'black' }} key={option} value={option}>{option}</option>))}
+                <option style={{ color: 'black' }} value='option1'>Male</option>
+                <option style={{ color: 'black' }} value='option2' disabled>Female</option>
+
             </Select>
         </Flex>
     )
 }
 
-export default AvatarCategory;
+export default GenderCategory;
