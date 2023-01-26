@@ -1,13 +1,38 @@
 import Avatar from '@/components/Avatar'
 import AvatarCategory from '@/components/AvatarCategory'
+import GenderCategory from '@/components/CategoriesSelect/GenderCategory'
+import SkinCategory from '@/components/CategoriesSelect/SkinCategory'
+
 import Navbar from '@/components/Navbar'
+import { useSampleAvatar } from '@/utils/hooks/useAvatars'
 
 import { Box, Flex, Heading, Stack, VStack } from '@chakra-ui/react'
 import Head from 'next/head'
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
 
+export interface AvatarProps {
+  avatar?: {
+    gender?: 'Male' | 'Female';
+    skin: 'Asian' | 'Black' | 'Caucasian';
+    archetype?: 'Citizen' | 'Craftsman' | 'Gatherers' | 'Lightworkers' | 'Scientist' | 'Weaponweilder';
+    job?: 'Farmer' | 'Herbalist' | 'Miner'
+    outfits?: string;
+    backpacks?: string;
+    hats?: string;
+    file: string;
+  }
+}
 
 export default function Home() {
+  const [avatar, setAvatar] = useState()
+  const { data } = useSampleAvatar();
+
+  useEffect(() => {
+    if(data) {
+      setAvatar(data)
+    }
+  },[data])
   return (
     <>
       <Head>
@@ -55,9 +80,9 @@ export default function Home() {
               alt="divider"
             />
             <Stack spacing={4} mt="48px">
-            <AvatarCategory title="Gender" options={['hello', 'bye', 'hey']}/>
-            <AvatarCategory title="Skin Type"  options={['hello', 'bye', 'hey']} />
-            <AvatarCategory title="Archetype"  options={['hello', 'bye', 'hey']}/>
+            <GenderCategory />
+            <SkinCategory />
+            <AvatarCategory title="Archetype"  options={['Citizen', 'Craftsman', 'Gatherers', 'Lightworkers', 'Scientist', 'Weaponweilder']}/>
             <AvatarCategory title="Job"  options={['hello', 'bye', 'hey']}/>
             <AvatarCategory title="Upgrades" options={['hello', 'bye', 'hey']}/>
             </Stack>
@@ -69,7 +94,7 @@ export default function Home() {
             h="100%"
             alignItems="flex-end"
           >
-            <Avatar />
+            <Avatar avatar={avatar} />
           </Flex>
         </Flex>
       </Box>
