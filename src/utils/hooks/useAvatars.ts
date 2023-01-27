@@ -19,6 +19,6 @@ export const getSampleURLByGender = async (gender: 'Male' | 'Female')=>{
 }
 
 export const getSampleURLBySkinType = async (skinType: 'Asian' | 'Black' | 'Caucasian')=>{
-    const { data } = await api.get(`/assets?skin=${skinType}`)
+    const { data } = await api.get(`/assets?gender=Male&skin=${skinType}`)
     return data
 }
