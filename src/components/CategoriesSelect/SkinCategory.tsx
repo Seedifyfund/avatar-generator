@@ -1,18 +1,41 @@
 import { getSampleURLBySkinType } from '@/utils/hooks/useAvatars';
-import { Box, Accordion, AccordionItem, AccordionButton, AccordionIcon, AccordionPanel, Heading, Flex, Select } from '@chakra-ui/react';
+import { Box, Accordion, AccordionItem, AccordionButton, AccordionIcon, AccordionPanel, Heading, Flex, Select, Button } from '@chakra-ui/react';
 import Image from 'next/image';
-import { useForm } from 'react-hook-form';
-import { useQuery } from 'react-query';
+import { Controller, useForm } from 'react-hook-form';
+import { useMutation, useQuery } from 'react-query';
+import { useEffect } from 'react';
 
 
+const skinList = [
+    {
+        id: "1",
+        name: "Asian"
+    },
+    {
+        id: "2",
+        name: "Black"
+    },
+    {
+        id: "3",
+        name: "Caucasian"
+    },
+];
 const SkinCategory = ({ }) => {
-    const { data } = useQuery(
-        `queryKey`, async() => await getSampleURLBySkinType('Black')
-    )
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    console.log(data);
+    const { isLoading, isError, error, mutate, data } = useMutation(getSampleURLBySkinType)
+    const { setValue, control, register, handleSubmit } = useForm({
+        mode: "onChange",
+    });
 
-    const onSubmit = (data: any) => console.log(data)
+    const onSubmit = async (data: any) => {
+        mutate(data.skin);
+    };
+    useEffect(() => {
+        setTimeout(() => {
+            setValue("skin", "1");
+        }, 1000);
+
+        console.log(data);
+    }, [setValue, data]);
     return (
         <Flex justify="space-between" alignItems="center">
             <Flex justify="space-between" alignItems="center" mb="12px">
@@ -26,12 +49,26 @@ const SkinCategory = ({ }) => {
                 </Heading>
             </Flex>
             <form onSubmit={handleSubmit(onSubmit)}>
-            <Select {...register('skin')}  w="60%" placeholder='Select option' borderColor="#FFC453" color="#FFF" onSelect={() => handleSubmit(onSubmit)} >
-                <option style={{ color: 'black' }} value='option1'>Asian</option>
-                <option style={{ color: 'black' }} value='option2'>Black</option>
-                <option style={{ color: 'black' }} value='option3'>Caucasian</option>
+                <Controller
+                    name="skin"
+                    control={control}
+                    defaultValue=""
+                    render={({ field: { onChange, value } }) => (
 
-            </Select>
+                        <Select     defaultValue="1" value={value} {...register('skin')} id="skin" w="100%" placeholder='Select option' borderColor="#FFC453" color="#FFF" onChange={onChange} >
+                            {skinList.map((c, i) => (
+                                <option style={{ color: 'black' }} key={`c-${i}`} value={c.name}>
+                                    {c.name}
+                                </option>
+                            ))}
+
+                        </Select>
+                    )}
+                />
+                <Button type="submit">
+                    Go!
+                </Button>
+
             </form>
         </Flex>
     )

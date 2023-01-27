@@ -7,10 +7,10 @@ const Avatar = ({ avatar }: AvatarProps) => {
         <>
             {avatar ? (
                 <>
-                    <Backpacks src={`static/Male/${avatar?.skin}/${avatar?.archetype}/${avatar?.job}/Backpacks/Male_${avatar?.archetype}_${avatar?.job}_${avatar?.skin}_Backpack_1A.PNG`} />
+                    {/* <Backpacks src={`static/Male/${avatar?.skin}/${avatar?.archetype}/${avatar?.job}/Backpacks/Male_${avatar?.archetype}_${avatar?.job}_${avatar?.skin}_Backpack_1A.PNG`} /> */}
                     <BaseModel src={`/static/Male/${avatar?.skin}/Base Model/Skin Base/Male_BaseModel_${avatar?.skin}.png`} />
                     <Hair src={`/static/Male/${avatar?.skin}/Base Model/Hair/Male_Hair_${avatar?.skin}_1A.png`} />
-                    <Outfits src={`static/Male/${avatar?.skin}/${avatar?.archetype}/${avatar?.job}/Outfits/Male_${avatar?.archetype}_${avatar?.job}_${avatar?.skin}_Clothes_01.png`} />
+                    {/* <Outfits src={`static/Male/${avatar?.skin}/${avatar?.archetype}/${avatar?.job}/Outfits/Male_${avatar?.archetype}_${avatar?.job}_${avatar?.skin}_Clothes_01.png`} /> */}
                 </>
             ) : (
                 <>

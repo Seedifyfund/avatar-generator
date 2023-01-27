@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 
 //Specific fetch function
 const getSampleImageURL = async ()=>{
-    const { data } = await api.get(`/assets/42`)
+    const { data } = await api.get(`/assets/300`)
     return data
 }
 
