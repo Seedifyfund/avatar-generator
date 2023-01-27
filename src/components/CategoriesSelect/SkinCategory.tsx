@@ -20,7 +20,7 @@ const skinList = [
         name: "Caucasian"
     },
 ];
-const SkinCategory = ({ }) => {
+const SkinCategory = ({setSkinType }: any) => {
     const { isLoading, isError, error, mutate, data } = useMutation(getSampleURLBySkinType)
     const { setValue, control, register, handleSubmit } = useForm({
         mode: "onChange",
@@ -49,25 +49,36 @@ const SkinCategory = ({ }) => {
                 </Heading>
             </Flex>
             <form onSubmit={handleSubmit(onSubmit)}>
+                <Flex width={256} justify="space-between">
                 <Controller
                     name="skin"
                     control={control}
                     defaultValue=""
                     render={({ field: { onChange, value } }) => (
 
-                        <Select     defaultValue="1" value={value} {...register('skin')} id="skin" w="100%" placeholder='Select option' borderColor="#FFC453" color="#FFF" onChange={onChange} >
+                        <Select 
+                         defaultValue="1"
+                         value={value}
+                         {...register('skin')}
+                         id="skin"
+                         w="100%"
+                         placeholder='Select option'
+                         borderColor="#FFC453"
+                         color="#FFF"
+                         onChange={onChange}
+                        >
                             {skinList.map((c, i) => (
                                 <option style={{ color: 'black' }} key={`c-${i}`} value={c.name}>
                                     {c.name}
                                 </option>
                             ))}
-
                         </Select>
                     )}
                 />
-                <Button type="submit">
+                <Button type="submit" ml={2}>
                     Go!
                 </Button>
+                </Flex>
 
             </form>
         </Flex>

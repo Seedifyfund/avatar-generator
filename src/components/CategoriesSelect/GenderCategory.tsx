@@ -4,10 +4,6 @@ import { useQuery } from 'react-query';
 import { getSampleURLByGender } from '@/utils/hooks/useAvatars';
 
 const GenderCategory = ({ }) => {
-    const { data } = useQuery(
-        `queryKeyMale`, async() => await getSampleURLByGender('Male')
-    )
-
     return (
         <Flex justify="space-between" alignItems="center">
             <Flex justify="space-between" alignItems="center" mb="12px">
